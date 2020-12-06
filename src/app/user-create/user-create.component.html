@@ -1,0 +1,6 @@
+<form class="createForm">
+  <h1 class="form-title text-center text-primary">Create user</h1>
+  <input class="form-text" type="text" name="username" placeholder="username" [(ngModel)]="username">
+  <input class="form-text" type="password" name="password" placeholder="password" [(ngModel)]="password">
+  <input class="btn-form" type="submit" (click)="create()" name="submit" value="create">
+</form>
