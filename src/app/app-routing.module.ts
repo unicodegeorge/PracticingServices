@@ -8,7 +8,6 @@ import {UserCreateComponent} from './user-create/user-create.component';
 const routes: Routes = [
   {path: 'users', component: UsersComponent},
   {path: 'user/:id', component: UserDetailComponent},
-
   {path: 'create', component: UserCreateComponent}
 
 ];
