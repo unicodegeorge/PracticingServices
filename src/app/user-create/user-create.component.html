@@ -1,6 +1,16 @@
-<form class="createForm">
+<form class="createForm" #form="ngForm">
   <h1 class="form-title text-center text-primary">Create user</h1>
-  <input class="form-text" type="text" name="username" placeholder="username" [(ngModel)]="username">
-  <input class="form-text" type="password" name="password" placeholder="password" [(ngModel)]="password">
-  <input class="btn-form" type="submit" (click)="create()" name="submit" value="create">
+  <input class="form-text" required minlength="3" maxlength="10" type="text" name="username" placeholder="username" #requsername="ngModel" [(ngModel)]="username">
+  <div *ngIf="requsername.invalid">
+  <span *ngIf="requsername.errors.required && requsername.touched" class="text-danger">Username Required</span>
+    <span *ngIf="requsername.errors.minlength && requsername.touched" class="text-danger">Minimal lenght is {{requsername.errors.minlength.requiredLength}}</span>
+    <span *ngIf="requsername.errors.maxlength && requsername.touched" class="text-danger">Maximal lenght is {{requsername.errors.maxlength.requiredLenght}}</span>
+  </div>
+  <input class="form-text" type="password" name="password" required maxlength="15" minlength="3" placeholder="password" #reqpassword="ngModel" [(ngModel)]="password">
+  <div *ngIf="reqpassword.invalid">
+    <span *ngIf="reqpassword.errors.required && reqpassword.touched" class="text-danger">Password Required</span>
+    <span *ngIf="reqpassword.errors.minlength && reqpassword.touched" class="text-danger">Minimal lenght is {{reqpassword.errors.minlength.requiredLength}}</span>
+    <span *ngIf="reqpassword.errors.maxlength && reqpassword.touched" class="text-danger">Maximal lenght is {{reqpassword.errors.maxlength.requiredLenght}}</span>
+  </div>
+  <input class="btn-form" type="submit" (click)="create()" name="submit" [disabled]="form.invalid" value="create">
 </form>
